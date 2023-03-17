@@ -1,5 +1,16 @@
+drop table 	CLIENT	cascade constraints;
+drop table 	COMMANDE	cascade constraints;
+drop table 	PRODUIT	cascade constraints;
+drop table 	PRIX_PRODUIT	cascade constraints;
+drop table 	FOURNISSEUR	cascade constraints;
+drop table 	LIGNE_COMMANDE	cascade constraints;
+drop table 	LIVRAISON	cascade constraints;
+drop table 	LIGNE_LIVRAISON	cascade constraints;
+drop table 	PAIEMENT	cascade constraints;
+drop table 	APPROVISIONNEMENT cascade constraints;
+
 CREATE TABLE Client (
-    no_client INT PRIMARY KEY,
+    no_client INT,
     nom VARCHAR(30),
     prenom VARCHAR(30),
     adr_client VARCHAR(60),
@@ -15,7 +26,7 @@ CREATE TABLE Commande (
     no_client INT, 
     PRIMARY KEY (no_commande),
     FOREIGN KEY (no_client) REFERENCES Client
-)
+);
 
 CREATE TABLE Produit(
     no_produit INT,
@@ -52,7 +63,7 @@ CREATE TABLE Approvisionnement(
     quantite_approvis INT
         check (quantite_approvis >= 0),
     date_cmd_approvis DATE,
-    statut VARCHAR(10) DEFAULT 'LIVRE' CONSTRAINT chk_statut CHECK (statut IN ('ENCOURS', 'ANNULEE', 'LIVRE')),
+    statut VARCHAR(10) DEFAULT 'LIVRE' CONSTRAINT chk_statut2 CHECK (statut IN ('ENCOURS', 'ANNULEE', 'LIVRE')),
     PRIMARY KEY (no_produit, code_fournisseur),
     FOREIGN KEY (no_produit) REFERENCES Produit,
     FOREIGN KEY (code_fournisseur) REFERENCES Fournisseur
