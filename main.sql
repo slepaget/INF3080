@@ -1,6 +1,3 @@
-
-DROP TABLE Client;
-
 CREATE TABLE Client (
     no_client INT PRIMARY KEY,
     nom VARCHAR(30),
@@ -85,6 +82,19 @@ CREATE TABLE Ligne_Livraison(
         check (quantite_livree >= 0),
     PRIMARY KEY (no_livraison, no_commande, no_produit),
     FOREIGN KEY (no_livraison) REFERENCES Livraison,
-    FOREIGN KEY (no_commande) REFERENCES Ligne_Commande,
-    FOREIGN KEY (no_produit) REFERENCES Ligne_Commande
+    FOREIGN KEY (no_commande, no_produit) REFERENCES Ligne_Commande
+);
+
+CREATE TABLE Paiement(
+    id_paiement INT,
+    date_paiement DATE,
+    montant NUMBER(8,2),
+    type_paiement VARCHAR(20) CONSTRAINT chk_type_paiement CHECK (type_paiement IN ('CASH', 'CHEQUE', 'CREDIT')),
+    no_cheque INT NOT NULL,
+    nom_banque VARCHAR(50) NOT NULL,
+    no_carte_credit VARCHAR(16) NOT NULL,
+    type_carte_credit VARCHAR(20) CONSTRAINT chk_type_carte_credit CHECK (type_carte_credit IN ('VISA', 'MASTERCARD', 'AMEX')),
+    no_livraison INT,
+    PRIMARY KEY (id_paiement),
+    FOREIGN KEY (no_livraison) REFERENCES Livraison
 );
