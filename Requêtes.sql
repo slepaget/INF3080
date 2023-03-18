@@ -58,9 +58,14 @@ SELECT * FROM Paiement WHERE nom_banque='Requête3.1 Bank'
 --Requête 3.2
 
 --Requête 3.3
+SELECT DISTINCT statut, COUNT(*) as count FROM Commande
+GROUP BY statut
 
 --Requête 3.4
 
 --Requête 3.5
+SELECT SUM(montant) from Paiement 
+WHERE type_paiement = 'CASH'
+AND date_paiement BETWEEN '2022/11/01' AND '2022/11/30'
 
 --Requête 3.6

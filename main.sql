@@ -8,7 +8,6 @@ drop table 	LIVRAISON	cascade constraints;
 drop table 	LIGNE_LIVRAISON	cascade constraints;
 drop table 	PAIEMENT	cascade constraints;
 drop table 	APPROVISIONNEMENT cascade constraints;
-drop trigger R31_IdPaiement;
 
 CREATE TABLE Client (
     no_client INT,
@@ -172,11 +171,5 @@ INSERT INTO Ligne_Livraison VALUES(751,50,953,1);
 
 INSERT INTO Paiement VALUES(1001,SYSDATE,10000.00,'CREDIT', NULL, 'Cash-ualty Bank', '754696587458', 'MASTERCARD',523);
 INSERT INTO Paiement VALUES(1002,SYSDATE,20.25,'CASH', NULL, 'CASH PAYMENT Bank', NULL, NULL, 659);
-INSERT INTO Paiement VALUES(1003,SYSDATE,1337.00,'CHEQUE', '954785631245989631', 'Capital Pains Savings', NULL, NULL, 751);
-
-
-
-
-
-
-
+INSERT INTO Paiement VALUES(1003,SYSDATE-56,1337.00,'CHEQUE', '954785631245989631', 'Capital Pains Savings', NULL, NULL, 751);
+INSERT INTO Paiement VALUES(1004,'2022/11/15',80085.77,'CASH', NULL, 'Requête 3.5 Bank', NULL, NULL, 751);
