@@ -173,6 +173,34 @@ INSERT INTO Paiement VALUES(1,SYSDATE,10000.00,'CREDIT', NULL, 'Cash-ualty Bank'
 INSERT INTO Paiement VALUES(2,SYSDATE,20.25,'CASH', NULL, 'CASH PAYMENT Bank', NULL, NULL, 659);
 INSERT INTO Paiement VALUES(3,SYSDATE,1337.00,'CHEQUE', '954785631245989631', 'Capital Pains Savings', NULL, NULL, 751);
 
+--Requête 2.1
+SELECT nom, prenom, telephone 
+FROM Client
+WHERE no_client IN (
+    SELECT no_client FROM Commande)
+
+--Requête 2.2
+
+--Requête 2.3
+
+--Requête 2.4
+
+--Requête 2.5
+
+--Requête 2.6
+
+--Requête 3.1
+
+--Requête 3.2
+
+--Requête 3.3
+
+--Requête 3.4
+
+--Requête 3.5
+
+--Requête 3.6
+
 
 
 
