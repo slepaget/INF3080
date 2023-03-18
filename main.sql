@@ -130,10 +130,10 @@ INSERT INTO Produit VALUES(158,'Schema Sculptor',SYSDATE-50,24,20,348953213);
 INSERT INTO Produit VALUES(559,'Backup Booster',SYSDATE-500,48,30,247997724);
 INSERT INTO Produit VALUES(001,'Query Quantum',SYSDATE-5000,96,40,154987865);
 
-INSERT INTO Prix_Produit VALUES(123.45,SYSDATE+9,167);
-INSERT INTO Prix_Produit VALUES(46.38,SYSDATE+18,953);
-INSERT INTO Prix_Produit VALUES(78.00,SYSDATE+36,158);
-INSERT INTO Prix_Produit VALUES(19.95,SYSDATE+72,559);
+INSERT INTO Prix_Produit VALUES(123.45,SYSDATE,167);
+INSERT INTO Prix_Produit VALUES(46.38,SYSDATE+31,953);
+INSERT INTO Prix_Produit VALUES(78.01,SYSDATE+62,158);
+INSERT INTO Prix_Produit VALUES(19.95,SYSDATE+365,559);
 INSERT INTO Prix_Produit VALUES(999999.99,SYSDATE+999,001);
 
 INSERT INTO Fournisseur VALUES(9541326,'GitGoing','4756 Quantum Boulevard, Suite 602, Cyberspace City','(345) 678-9012','GitGoing!');
@@ -199,6 +199,12 @@ ORDER BY commande.no_commande ASC
 --Requête 2.4
 
 --Requête 2.5
+SELECT 
+produit.no_produit, produit.description, produit.quantite_stock,
+prix_produit.prix_unitaire, prix_produit.date_envigueur
+FROM Produit
+INNER JOIN Prix_Produit ON produit.no_produit = prix_produit.no_produit
+ORDER BY prix_produit.date_envigueur ASC
 
 --Requête 2.6
 
