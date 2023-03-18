@@ -177,7 +177,7 @@ INSERT INTO Paiement VALUES(3,SYSDATE,1337.00,'CHEQUE', '954785631245989631', 'C
 SELECT nom, prenom, telephone 
 FROM Client
 WHERE no_client IN (
-    SELECT no_client FROM Commande)
+    SELECT no_client FROM Commande);
 
 --Requête 2.2
 
@@ -194,7 +194,7 @@ AND no_client IN (
     SELECT no_client 
     FROM Client 
     WHERE nom='Alain' AND prenom='Boyer')
-ORDER BY commande.no_commande ASC
+ORDER BY commande.no_commande ASC;
 
 --Requête 2.4
 
@@ -204,7 +204,7 @@ produit.no_produit, produit.description, produit.quantite_stock,
 prix_produit.prix_unitaire, prix_produit.date_envigueur
 FROM Produit
 INNER JOIN Prix_Produit ON produit.no_produit = prix_produit.no_produit
-ORDER BY prix_produit.date_envigueur ASC
+ORDER BY prix_produit.date_envigueur ASC;
 
 --Requête 2.6
 
