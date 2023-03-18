@@ -8,6 +8,7 @@ drop table 	LIVRAISON	cascade constraints;
 drop table 	LIGNE_LIVRAISON	cascade constraints;
 drop table 	PAIEMENT	cascade constraints;
 drop table 	APPROVISIONNEMENT cascade constraints;
+drop trigger R31_IdPaiement;
 
 CREATE TABLE Client (
     no_client INT,
@@ -169,9 +170,9 @@ INSERT INTO Ligne_Livraison VALUES(659,30,158,6);
 INSERT INTO Ligne_Livraison VALUES(659,40,559,8);
 INSERT INTO Ligne_Livraison VALUES(751,50,953,1);
 
-INSERT INTO Paiement VALUES(1,SYSDATE,10000.00,'CREDIT', NULL, 'Cash-ualty Bank', '754696587458', 'MASTERCARD',523);
-INSERT INTO Paiement VALUES(2,SYSDATE,20.25,'CASH', NULL, 'CASH PAYMENT Bank', NULL, NULL, 659);
-INSERT INTO Paiement VALUES(3,SYSDATE,1337.00,'CHEQUE', '954785631245989631', 'Capital Pains Savings', NULL, NULL, 751);
+INSERT INTO Paiement VALUES(1001,SYSDATE,10000.00,'CREDIT', NULL, 'Cash-ualty Bank', '754696587458', 'MASTERCARD',523);
+INSERT INTO Paiement VALUES(1002,SYSDATE,20.25,'CASH', NULL, 'CASH PAYMENT Bank', NULL, NULL, 659);
+INSERT INTO Paiement VALUES(1003,SYSDATE,1337.00,'CHEQUE', '954785631245989631', 'Capital Pains Savings', NULL, NULL, 751);
 
 --Requête 2.1
 SELECT nom, prenom, telephone 
@@ -209,6 +210,26 @@ ORDER BY prix_produit.date_envigueur ASC;
 --Requête 2.6
 
 --Requête 3.1
+CREATE TRIGGER R31_IdPaiement
+BEFORE INSERT ON Paiement
+FOR EACH ROW
+DECLARE 
+  id INT;
+BEGIN
+    SELECT MAX(id_paiement) INTO id FROM Paiement;
+    IF id IS NULL THEN
+        id:=1000;
+    ELSE
+        id := id +1;
+    END IF;
+    :NEW.id_paiement := id;
+END;
+
+INSERT INTO Paiement (date_paiement,montant,type_paiement,no_cheque,nom_banque,no_carte_credit,type_carte_credit,no_livraison) 
+VALUES(SYSDATE,1.25,'CASH', NULL, 'Requête3.1 Bank', NULL, NULL,751);
+
+SELECT * FROM Paiement WHERE nom_banque='Requête3.1 Bank'
+
 
 --Requête 3.2
 
