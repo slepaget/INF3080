@@ -114,14 +114,14 @@ INSERT INTO Client VALUES(1,'Kunis','MySQLa','1234 Neverland Dr, Wonderland, XYZ
 INSERT INTO Client VALUES(2,'Carey','MariaDB','9876 Imaginary Rd, Dreamland, ABC 67890','(555) 555-1337','Postgre4me');
 INSERT INTO Client VALUES(3,'McBeal','Oracley ','4567 Fictitious Blvd, Fantasy City, DEF 23456','(420) 123-4567','SQLite4u');
 INSERT INTO Client VALUES(4,'Stallone','SQLite ', '5555 Mirage Ave, Illusion Town, GHI 78901','(800) 555-3131','Couchb4se');
-INSERT INTO Client VALUES(10,'Alain','Boyer ', '8888 Phantasm St, Mythical Village, JKL 34567','(888) 555-6969','M4riDBpass');
+INSERT INTO Client VALUES(10,'Alain','Boyer', '8888 Phantasm St, Mythical Village, JKL 34567','(888) 555-6969','M4riDBpass');
 
 INSERT INTO Commande (no_commande, date_commande,no_client)
                      VALUES(10,SYSDATE-1,1);
-INSERT INTO Commande VALUES(20,SYSDATE-10,'ENCOURS',2);
-INSERT INTO Commande VALUES(30,SYSDATE-100,'ENCOURS',3);
-INSERT INTO Commande VALUES(40,'2023-01-05','ANNULEE',10);
-INSERT INTO Commande VALUES(50,'2023-03-10','FERMEE',10);
+INSERT INTO Commande VALUES(20,SYSDATE-10,'ANNULEE',2);
+INSERT INTO Commande VALUES(30,SYSDATE-100,'FERMEE',3);
+INSERT INTO Commande VALUES(40,'2023-01-05','ENCOURS',10);
+INSERT INTO Commande VALUES(50,'2023-03-10','ENCOURS',10);
 
 INSERT INTO Produit (no_produit,description,quantite_stock,quantite_seuil,code_fournisseur_prioritaire) 
                     VALUES(167,'Data Dazzler',500,50,565878531);
@@ -182,6 +182,19 @@ WHERE no_client IN (
 --Requête 2.2
 
 --Requête 2.3
+SELECT 
+Commande.no_commande, Commande.date_commande, 
+produit.no_produit, produit.description,
+ligne_commande.quantite_cmd
+FROM Commande
+INNER JOIN Ligne_Commande ON commande.no_commande = ligne_commande.no_commande
+INNER JOIN Produit ON ligne_commande.no_produit = produit.no_produit
+WHERE statut = 'ENCOURS' 
+AND no_client IN (
+    SELECT no_client 
+    FROM Client 
+    WHERE nom='Alain' AND prenom='Boyer')
+ORDER BY commande.no_commande ASC
 
 --Requête 2.4
 
