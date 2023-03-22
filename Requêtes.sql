@@ -111,9 +111,57 @@ GROUP BY statut
 
 --Requête 3.4
 
+SELECT Commande.no_commande, COUNT(Ligne_commande.no_produit) AS nbr_items
+FROM Commande, Ligne_commande
+WHERE Commande.no_commande = Ligne_commande.no_commande
+GROUP BY Commande.no_commande
+ORDER BY nbr_items DESC;
+
+SELECT Commande.no_commande, COUNT(Ligne_commande.no_produit) AS nbr_items
+FROM Commande, Ligne_commande
+WHERE Commande.no_commande = Ligne_commande.no_commande
+GROUP BY Commande.no_commande
+HAVING COUNT(Ligne_commande.no_produit) > 1;
+
+
 --Requête 3.5
 SELECT SUM(montant) from Paiement 
 WHERE type_paiement = 'CASH'
 AND date_paiement BETWEEN '2022/11/01' AND '2022/11/30'
 
 --Requête 3.6
+
+SELECT MAX(quantite_cmd) AS max_items
+FROM Ligne_commande, (
+    SELECT Commande.no_commande, COUNT(Ligne_commande.no_produit) AS nbr_items
+    FROM Commande, Ligne_commande
+    GROUP BY Commande.no_commande
+);
+
+SELECT Ligne_commande.no_commande
+FROM Ligne_commande
+WHERE Ligne_commande.quantite_cmd = (
+    SELECT MAX(quantite_cmd) AS max_items
+    FROM Ligne_commande, (
+    SELECT Commande.no_commande, COUNT(Ligne_commande.no_produit) AS nbr_items
+    FROM Commande, Ligne_commande
+    GROUP BY Commande.no_commande
+    )
+);
+
+SELECT Commande.no_commande, date_commande, Commande.statut, Client.no_client, nom, prenom
+FROM Commande, Client
+WHERE Commande.no_client = Client.no_client AND Commande.no_commande = (
+    SELECT Ligne_commande.no_commande
+    FROM Ligne_commande
+    WHERE Ligne_commande.quantite_cmd = (
+        SELECT MAX(quantite_cmd) AS max_items
+        FROM Ligne_commande, (
+            SELECT Commande.no_commande, COUNT(Ligne_commande.no_produit) AS nbr_items
+            FROM Commande, Ligne_commande
+            GROUP BY Commande.no_commande
+            )
+        )
+);
+
+
