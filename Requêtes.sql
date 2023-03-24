@@ -90,7 +90,7 @@ SELECT * FROM Paiement WHERE nom_banque='Requête3.1 Bank'
 CREATE VIEW V_commande_item AS
 SELECT nom, prenom, Commande.no_commande, Ligne_commande.quantite_cmd, Prix_produit.prix_unitaire, Commande.statut
 FROM Commande, Prix_produit, Client, Ligne_commande, Produit
-WHERE Commande.no_client = Client.no_client AND Commande.no_commande = Ligne_commande.no_commande AND Ligne_commande.no_produit = Produit.no_produit AND Produit.no_produit = Prix_produit.no_produit
+WHERE Commande.no_client = Client.no_client AND Commande.no_commande = Ligne_commande.no_commande AND Ligne_commande.no_produit = Produit.no_produit AND Produit.no_produit = Prix_produit.no_produit;
 
 SELECT * 
 FROM V_commande_item;
@@ -99,7 +99,7 @@ FROM V_commande_item;
 CREATE OR REPLACE VIEW V_commande_item AS
 SELECT nom, prenom, Commande.no_commande, Ligne_commande.quantite_cmd, Prix_produit.prix_unitaire, Commande.statut, (Ligne_commande.quantite_cmd * prix_produit.prix_unitaire) AS Prix_Total_item
 FROM Commande, Prix_produit, Client, Ligne_commande, Produit
-WHERE Commande.no_client = Client.no_client AND Commande.no_commande = Ligne_commande.no_commande AND Ligne_commande.no_produit = Produit.no_produit AND Produit.no_produit = Prix_produit.no_produit
+WHERE Commande.no_client = Client.no_client AND Commande.no_commande = Ligne_commande.no_commande AND Ligne_commande.no_produit = Produit.no_produit AND Produit.no_produit = Prix_produit.no_produit;
 
 
 --b)

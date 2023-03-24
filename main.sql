@@ -115,13 +115,16 @@ INSERT INTO Client VALUES(2,'Carey','MariaDB','9876 Imaginary Rd, Dreamland, ABC
 INSERT INTO Client VALUES(3,'McBeal','Oracley ','4567 Fictitious Blvd, Fantasy City, DEF 23456','(420) 123-4567','SQLite4u');
 INSERT INTO Client VALUES(4,'Stallone','SQLite ', '5555 Mirage Ave, Illusion Town, GHI 78901','(800) 555-3131','Couchb4se');
 INSERT INTO Client VALUES(10,'Alain','Boyer', '8888 Phantasm St, Mythical Village, JKL 34567','(888) 555-6969','M4riDBpass');
+INSERT INTO Client VALUES(12,'Michel','Tremblay', '9999 Helm St, Imaginary Town, YGD 36543','(999) 666-7070','BigMich123');
 
 INSERT INTO Commande (no_commande, date_commande,no_client)
                      VALUES(10,SYSDATE-1,1);
 INSERT INTO Commande VALUES(20,SYSDATE-10,'ANNULEE',2);
 INSERT INTO Commande VALUES(30,SYSDATE-100,'FERMEE',3);
+INSERT INTO Commande VALUES(35,'2023-02-07','ENCOURS',10);
 INSERT INTO Commande VALUES(40,'2023-01-05','ENCOURS',10);
 INSERT INTO Commande VALUES(50,'2023-03-10','ENCOURS',10);
+INSERT INTO Commande VALUES(300,'2023-03-10','ENCOURS',12);
 
 INSERT INTO Produit (no_produit,description,quantite_stock,quantite_seuil,code_fournisseur_prioritaire) 
                     VALUES(167,'Data Dazzler',500,50,565878531);
@@ -152,24 +155,29 @@ INSERT INTO Approvisionnement VALUES(001,5126584,7,SYSDATE-500,'LIVRE');
 INSERT INTO Ligne_Commande VALUES(10,167,2);
 INSERT INTO Ligne_Commande VALUES(20,953,4);
 INSERT INTO Ligne_Commande VALUES(30,158,6);
+INSERT INTO Ligne_Commande VALUES(35,167,6);
 INSERT INTO Ligne_Commande VALUES(40,559,8);
 INSERT INTO Ligne_Commande VALUES(40,953,6);
 INSERT INTO Ligne_Commande VALUES(40,001,2);
 INSERT INTO Ligne_Commande VALUES(50,167,3);
 INSERT INTO Ligne_Commande VALUES(50,559,5);
 INSERT INTO Ligne_Commande VALUES(50,953,1);
+INSERT INTO Ligne_Commande VALUES(300,953,2);
 
 INSERT INTO Livraison VALUES(523,SYSDATE+7);
 INSERT INTO Livraison VALUES(659,SYSDATE+14);
 INSERT INTO Livraison VALUES(751,SYSDATE+21);
+INSERT INTO Livraison VALUES(50021,SYSDATE+21);
 
 INSERT INTO Ligne_Livraison VALUES(523,10,167,2);
 INSERT INTO Ligne_Livraison VALUES(523,20,953,4);
 INSERT INTO Ligne_Livraison VALUES(659,30,158,6);
 INSERT INTO Ligne_Livraison VALUES(659,40,559,8);
 INSERT INTO Ligne_Livraison VALUES(751,50,953,1);
+INSERT INTO Ligne_Livraison VALUES(50021,50,953,1);
 
 INSERT INTO Paiement VALUES(1001,SYSDATE,10000.00,'CREDIT', NULL, 'Cash-ualty Bank', '754696587458', 'MASTERCARD',523);
 INSERT INTO Paiement VALUES(1002,SYSDATE,20.25,'CASH', NULL, 'CASH PAYMENT Bank', NULL, NULL, 659);
 INSERT INTO Paiement VALUES(1003,SYSDATE-56,1337.00,'CHEQUE', '954785631245989631', 'Capital Pains Savings', NULL, NULL, 751);
 INSERT INTO Paiement VALUES(1004,'2022/11/15',80085.77,'CASH', NULL, 'Requête 3.5 Bank', NULL, NULL, 751);
+INSERT INTO Paiement VALUES(1005,'2022/11/18',80085.77,'CASH', NULL, 'Requête 3.5 Bank', NULL, NULL, 50021);
