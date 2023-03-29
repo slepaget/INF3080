@@ -34,7 +34,7 @@ WHERE Approvisionnement.code_fournisseur = Fournisseur.code_fournisseur AND Appr
 
 --b)
 --A revoir***
-SELECT Produit.description, COUNT(DISTINCT Produit.code_fournisseur_prioritaire) AS nombre_fournisseurs
+SELECT Produit.description, COUNT(DISTINCT Approvisionnement.code_fournisseur) AS nombre_fournisseurs
 FROM Produit, Approvisionnement
 WHERE Produit.no_produit = Approvisionnement.no_produit
 GROUP BY Produit.description
