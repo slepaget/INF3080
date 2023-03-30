@@ -8,6 +8,7 @@ drop table 	LIVRAISON	cascade constraints;
 drop table 	LIGNE_LIVRAISON	cascade constraints;
 drop table 	PAIEMENT	cascade constraints;
 drop table 	APPROVISIONNEMENT cascade constraints;
+drop view V_commande_item;
 
 CREATE TABLE Client (
     no_client INT,
