@@ -1,0 +1,15 @@
+Client
+    Clé primaire(no_client)
+
+Commande
+    Clé primaire(no_commande)
+    idx_date(date_commande)
+        RapportCommandesEnAttente "imprimées en ordre chronologique"
+    idx_statut(statut)
+        Requête 2.1
+        Requête 2.2
+
+Produit
+    Clé primaire(no_produit)
+    idx_description(description)
+        GérerCatalogue "Lors de la consultation, la recherche peut être effectuée à partir du numéro du produit ou à partir de la description ou d'un préfixe de la description"

@@ -28,6 +28,12 @@ INSERT INTO Prix_Produit VALUES(78.01,SYSDATE+62,158);
 INSERT INTO Prix_Produit VALUES(19.95,SYSDATE+365,559);
 INSERT INTO Prix_Produit VALUES(999999.99,SYSDATE+999,001);
 
+INSERT INTO Prix_Produit VALUES(100,SYSDATE-7,167);
+INSERT INTO Prix_Produit VALUES(200,SYSDATE-7,953);
+INSERT INTO Prix_Produit VALUES(300,SYSDATE-7,158);
+INSERT INTO Prix_Produit VALUES(29.99,SYSDATE-7,559);
+INSERT INTO Prix_Produit VALUES(85.96,SYSDATE-7,001);
+
 INSERT INTO Fournisseur VALUES(9541326,'GitGoing','4756 Quantum Boulevard, Suite 602, Cyberspace City','(345) 678-9012','GitGoing!');
 INSERT INTO Fournisseur VALUES(8654139,'JavaJive','123 Roast Road, Suite 205, Espresso Heights','(234) 567-8901','$J@vaJiv3!');
 INSERT INTO Fournisseur VALUES(7618996,'CodeBrew','987 Syntax Street, Suite 401, Binaryville','(456) 789-0123','Brew4Code');
@@ -70,4 +76,6 @@ INSERT INTO Paiement VALUES(1001,SYSDATE,10000.00,'CREDIT', NULL, 'Cash-ualty Ba
 INSERT INTO Paiement VALUES(1002,SYSDATE,20.25,'CASH', NULL, 'CASH PAYMENT Bank', NULL, NULL, 659);
 INSERT INTO Paiement VALUES(1003,SYSDATE-56,1337.00,'CHEQUE', '954785631245989631', 'Capital Pains Savings', NULL, NULL, 751);
 INSERT INTO Paiement VALUES(1004,'2022/11/15',80085.77,'CASH', NULL, 'Requête 3.5 Bank', NULL, NULL, 751);
-INSERT INTO Paiement VALUES(1005,'2022/11/18',80085.77,'CASH', NULL, 'Requête 2.6 Bank', NULL, NULL, 50021);
+INSERT INTO Paiement VALUES(1005,'2022/11/18',80085.77,'CASH', NULL, 'Requête 3.5 Bank', NULL, NULL, 50021);
+INSERT INTO Paiement    (date_paiement, montant,    type_paiement,  no_cheque,  nom_banque,         no_carte_credit,    type_carte_credit,  no_livraison) 
+    VALUES(             SYSDATE,        1.25,       'CASH',         NULL,       'Requête3.1 Bank',  NULL,               NULL,               751);
