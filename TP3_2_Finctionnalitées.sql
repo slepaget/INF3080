@@ -63,8 +63,6 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE(SYSDATE);
     DBMS_OUTPUT.PUT_LINE('**********');
 
-    
-    --****************************************************
     OPEN c1;
     LOOP
         FETCH c1 INTO VDescription, VqteCommande, VqteStock, VnoCommande, VdateCommande;
