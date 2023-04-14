@@ -8,7 +8,7 @@ INSERT INTO Client VALUES(12,'Michel','Tremblay', '9999 Helm St, Imaginary Town,
 
 INSERT INTO Commande (no_commande, date_commande,no_client)
                      VALUES(10,SYSDATE-1,1);
-INSERT INTO Commande VALUES(20,SYSDATE-10,'ANNULEE',2);
+INSERT INTO Commande VALUES(20,SYSDATE-10,'ANNULE',2);
 INSERT INTO Commande VALUES(30,SYSDATE-100,'FERMEE',3);
 INSERT INTO Commande VALUES(35,'2023-02-07','ENCOURS',12);
 INSERT INTO Commande VALUES(40,'2023-01-05','ENCOURS',10);
@@ -43,7 +43,7 @@ INSERT INTO Fournisseur VALUES(5126584,'ClickBait','369 Ad Avenue, Suite 102, Pi
 INSERT INTO Approvisionnement (no_produit,code_fournisseur,quantite_approvis,date_cmd_approvis) 
                               VALUES(167,9541326,6,SYSDATE);
 INSERT INTO Approvisionnement VALUES(953,8654139,1,SYSDATE-50,'ENCOURS');
-INSERT INTO Approvisionnement VALUES(158,7618996,12,SYSDATE-100,'ANNULEE');
+INSERT INTO Approvisionnement VALUES(158,7618996,12,SYSDATE-100,'ANNULE');
 INSERT INTO Approvisionnement VALUES(559,6513489,9,SYSDATE-200,'LIVRE');
 INSERT INTO Approvisionnement VALUES(001,5126584,7,SYSDATE-500,'LIVRE');
 INSERT INTO Approvisionnement VALUES(001,6513489,10,SYSDATE-300,'LIVRE');

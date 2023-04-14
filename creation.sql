@@ -23,7 +23,7 @@ CREATE TABLE Client (
 CREATE TABLE Commande (
     no_commande INT,
     date_commande DATE,
-    statut VARCHAR(7) DEFAULT 'ENCOURS' CONSTRAINT chk_statut CHECK (statut IN ('ENCOURS', 'ANNULEE', 'FERMEE')),
+    statut VARCHAR(7) DEFAULT 'ENCOURS' CONSTRAINT chk_statut CHECK (statut IN ('ENCOURS', 'ANNULE', 'FERMEE')),
     no_client INT, 
     PRIMARY KEY (no_commande),
     FOREIGN KEY (no_client) REFERENCES Client
@@ -64,7 +64,7 @@ CREATE TABLE Approvisionnement(
     quantite_approvis INT
         check (quantite_approvis >= 0),
     date_cmd_approvis DATE,
-    statut VARCHAR(10) DEFAULT 'LIVRE' CONSTRAINT chk_statut2 CHECK (statut IN ('ENCOURS', 'ANNULEE', 'LIVRE')),
+    statut VARCHAR(10) DEFAULT 'LIVRE' CONSTRAINT chk_statut2 CHECK (statut IN ('ENCOURS', 'ANNULE', 'LIVRE')),
     PRIMARY KEY (no_produit, code_fournisseur),
     FOREIGN KEY (no_produit) REFERENCES Produit,
     FOREIGN KEY (code_fournisseur) REFERENCES Fournisseur
@@ -110,3 +110,5 @@ CREATE TABLE Paiement(
     PRIMARY KEY (id_paiement),
     FOREIGN KEY (no_livraison) REFERENCES Livraison
 );
+
+create or replace TYPE array IS TABLE OF NUMBER
