@@ -46,3 +46,7 @@ len:=0;
     END LOOP;
 
 END;
+
+BEGIN
+    Test_C1();
+END;
