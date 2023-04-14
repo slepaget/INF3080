@@ -12,10 +12,6 @@ SELECT quantite_cmd INTO QuantiteEnAttente
     RETURN QuantiteEnAttente;
 END;
 
-SELECT
-    QuantiteEnAttente(559,40)
-FROM
-    dual;
 
 --REQUÈTE 2.2
 
@@ -76,10 +72,6 @@ BEGIN
         
 END;
 
-
-BEGIN
-    PreparerLivraison(10);
-END;
 
 --REQUÈTE 2.3
 
@@ -151,8 +143,4 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('-----------------------');
     DBMS_OUTPUT.PUT_LINE('Total:      '||MontantTotal);
 
-END;
-
-BEGIN
-    ProduireFacture(50021);
 END;

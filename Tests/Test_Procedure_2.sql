@@ -15,8 +15,15 @@ result:=0;
     BEGIN
         len := len+1;
         R :=0;
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'ENCOURS',999);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,999,999,999);
+        INSERT INTO Prix_Produit VALUES(999,SYSDATE,999);
+        INSERT INTO Ligne_Commande VALUES(999,999,999);
+        INSERT INTO Livraison VALUES(999,SYSDATE);
+        INSERT INTO Ligne_Livraison VALUES(999,999,999,999);
         BEGIN
-            ProduireFacture(50021);
+            ProduireFacture(999);
         END;
     EXCEPTION
         WHEN OTHERS THEN
@@ -80,8 +87,4 @@ result:=0;
         END IF;
         DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
     END LOOP;
-END;
-
-BEGIN
-    Test_Procedure_2();
 END;

@@ -13,7 +13,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter','2023-02-27',12,10,458495522);
+        INSERT INTO Produit VALUES(999,'Test','2023-02-27',999,999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -26,7 +26,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter','',12,10,458495522);
+        INSERT INTO Produit VALUES(999,'Test','',999,999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -34,12 +34,12 @@ len:=0;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
-    
+
     ---------- Test avec un string ----------
     BEGIN
         len := len+1;
         R :=1;
-        INSERT INTO Produit VALUES(953,'Cyber Converter','Allo',12,10,458495522);
+        INSERT INTO Produit VALUES(999,'Test','Allo',999,999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 0;
@@ -47,12 +47,12 @@ len:=0;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
-    
+
     ---------- Test avec une date future ----------
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter','2023-04-25',12,10,458495522);
+        INSERT INTO Produit VALUES(999,'Test','2023-04-25',999,999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -70,8 +70,4 @@ len:=0;
         END IF;
         DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
     END LOOP;
-END;
-
-BEGIN
-    Test_C2();
 END;

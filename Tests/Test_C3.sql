@@ -13,7 +13,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=1;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,-1,10,458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,-1,999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 0;
@@ -26,7 +26,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,20,10,458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,20,999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -34,12 +34,12 @@ len:=0;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
-    
+
     ---------- Test avec une quantite de 0 ----------
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,0,10,458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,0,999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -47,12 +47,12 @@ len:=0;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
-    
+
     ---------- Test avec un String ----------
     BEGIN
         len := len+1;
         R :=1;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,'Allo',10,458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,'Allo',999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 0;
@@ -60,12 +60,12 @@ len:=0;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
-    
+
     ---------- Test avec une quantite vide ----------
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,'',10,458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,'',999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -83,8 +83,4 @@ len:=0;
         END IF;
         DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
     END LOOP;
-END;
-
-BEGIN
-    Test_C3();
 END;

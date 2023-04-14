@@ -15,8 +15,15 @@ result:=0;
     BEGIN
         len := len+1;
         R :=0;
+        
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'ENCOURS',999);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,999,999,999);
+        INSERT INTO Ligne_Commande VALUES(999,999,999);
+        INSERT INTO Livraison VALUES(999,SYSDATE);
+        INSERT INTO Ligne_Livraison VALUES(999,999,999,999);
         BEGIN
-            PreparerLivraison(10);
+            PreparerLivraison(999);
         END;
     EXCEPTION
         WHEN OTHERS THEN
@@ -25,7 +32,7 @@ result:=0;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
-    
+
     ---------- Test avec un client non existant ----------
     BEGIN
         len := len+1;
@@ -40,7 +47,7 @@ result:=0;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
-    
+
     ---------- Test avec un client string ----------
     BEGIN
         len := len+1;
@@ -55,7 +62,7 @@ result:=0;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
-    
+
     ---------- Test avec aucun argument ----------
     BEGIN
         len := len+1;
@@ -80,8 +87,4 @@ result:=0;
         END IF;
         DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
     END LOOP;
-END;
-
-BEGIN
-    Test_Procedure_1();
 END;

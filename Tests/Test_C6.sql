@@ -109,7 +109,3 @@ len:=0;
         DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
     END LOOP;
 END;
-
-BEGIN
-    Test_C6();
-END;

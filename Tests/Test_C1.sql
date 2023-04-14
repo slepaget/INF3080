@@ -1,4 +1,3 @@
---C1 Check status Commande
 create or replace PROCEDURE Test_C1
 
 IS
@@ -14,7 +13,8 @@ len:=0;
     BEGIN
         len := len+1;
         R :=1;
-        INSERT INTO Commande VALUES(99,SYSDATE,'zzzzzz',12);
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'zzzzzz',999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 0;
@@ -27,7 +27,8 @@ len:=0;
     BEGIN
         len := len+1;
         R :=1;
-        INSERT INTO Commande VALUES(99,SYSDATE,' ',12);
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,' ',999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 0;
@@ -41,8 +42,9 @@ len:=0;
     BEGIN
         len := len+1;
         R :=0;
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
         INSERT INTO Commande (no_commande, date_commande,no_client)
-                     VALUES(99,SYSDATE,12);
+                     VALUES(999,SYSDATE,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -56,7 +58,8 @@ len:=0;
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Commande VALUES(100,SYSDATE,'ENCOURS',12);
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'ENCOURS',999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;   
@@ -65,24 +68,26 @@ len:=0;
     RArray(len):=R;
     ROLLBACK;
 
-    
+
     --TEST THAT PASSES IF THE COMMAND IS EXECUTED CORRECTLY
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Commande VALUES(100,SYSDATE,'ANNULEE',12);
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'ANNULE',999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;   
     END;
     RArray.EXTEND(1);RArray(len):=R;ROLLBACK;
 
-    
+
     --TEST THAT PASSES IF THE COMMAND IS EXECUTED CORRECTLY
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Commande VALUES(100,SYSDATE,'FERMEE',12);
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'FERMEE',999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;   
@@ -101,8 +106,4 @@ len:=0;
         DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
     END LOOP;
 
-END;
-
-BEGIN
-    Test_C1();
 END;

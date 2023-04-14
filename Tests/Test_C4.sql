@@ -13,7 +13,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=1;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,10,-1,458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,999,-1,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 0;
@@ -26,7 +26,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,10,20,458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,99,20,99);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -39,7 +39,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,10,0,458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,10,999,999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -52,7 +52,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=1;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,10,'Allo',458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,999,'Allo',999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 0;
@@ -65,7 +65,7 @@ len:=0;
     BEGIN
         len := len+1;
         R :=0;
-        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,10,'',458495522);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,999,'',999);
     EXCEPTION
         WHEN OTHERS THEN
             R := 1;
@@ -83,8 +83,4 @@ len:=0;
         END IF;
         DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
     END LOOP;
-END;
-
-BEGIN
-    Test_C4();
 END;
