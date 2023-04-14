@@ -1,3 +1,4 @@
+--C1 Check status Commande
 create or replace PROCEDURE Test_C1
 
 IS
@@ -74,9 +75,7 @@ len:=0;
         WHEN OTHERS THEN
             R := 1;   
     END;
-    RArray.EXTEND(1);
-    RArray(len):=R;
-    ROLLBACK;
+    RArray.EXTEND(1);RArray(len):=R;ROLLBACK;
 
     
     --TEST THAT PASSES IF THE COMMAND IS EXECUTED CORRECTLY
@@ -88,9 +87,7 @@ len:=0;
         WHEN OTHERS THEN
             R := 1;   
     END;
-    RArray.EXTEND(1);
-    RArray(len):=R;
-    ROLLBACK;
+    RArray.EXTEND(1);RArray(len):=R;ROLLBACK;
 
 
 
