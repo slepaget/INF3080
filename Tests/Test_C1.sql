@@ -9,11 +9,11 @@ IS
 BEGIN
 len:=0;
 
-    --TEST THAT PASSES IF THE COMMAND FAILS
+    --TEST THAT PASSES IF THE COMMAND ***FAILS***
     BEGIN
         len := len+1;
         R :=1;
-        INSERT INTO Commande VALUES(99,'2023-02-07','zzzzzz',12);
+        INSERT INTO Commande VALUES(99,SYSDATE,'zzzzzz',12);
     EXCEPTION
         WHEN OTHERS THEN
             R := 0;
@@ -22,20 +22,79 @@ len:=0;
     RArray(len):=R;
     ROLLBACK;
 
-    --TEST THAT PASSES IF THE COMMAND EXECUTED CORRECTLY
+        --TEST THAT PASSES IF THE COMMAND ***FAILS***
     BEGIN
         len := len+1;
-        R :=0;
-        INSERT INTO Commande VALUES(100,'2023-02-07','ENCOURS',12);
+        R :=1;
+        INSERT INTO Commande VALUES(99,SYSDATE,' ',12);
     EXCEPTION
         WHEN OTHERS THEN
-            R := 1;
-            
+            R := 0;
     END;
     RArray.EXTEND(1);
     RArray(len):=R;
     ROLLBACK;
 
+
+    --TEST THAT PASSES IF THE COMMAND IS EXECUTED CORRECTLY
+    BEGIN
+        len := len+1;
+        R :=0;
+        INSERT INTO Commande (no_commande, date_commande,no_client)
+                     VALUES(99,SYSDATE,12);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+
+    --TEST THAT PASSES IF THE COMMAND IS EXECUTED CORRECTLY
+    BEGIN
+        len := len+1;
+        R :=0;
+        INSERT INTO Commande VALUES(100,SYSDATE,'ENCOURS',12);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;   
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    
+    --TEST THAT PASSES IF THE COMMAND IS EXECUTED CORRECTLY
+    BEGIN
+        len := len+1;
+        R :=0;
+        INSERT INTO Commande VALUES(100,SYSDATE,'ANNULEE',12);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;   
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    
+    --TEST THAT PASSES IF THE COMMAND IS EXECUTED CORRECTLY
+    BEGIN
+        len := len+1;
+        R :=0;
+        INSERT INTO Commande VALUES(100,SYSDATE,'FERMEE',12);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;   
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+
+
+    --LOOP OVER THE RESULTS AND PRINTS
     FOR i IN 1..RArray.COUNT LOOP
         IF RArray(i)= 0 THEN 
             temp:='PASSED';
