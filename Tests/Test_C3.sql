@@ -1,0 +1,90 @@
+create or replace PROCEDURE Test_C3
+
+IS
+    R NUMBER;
+    len NUMBER;
+    RArray ARRAY := ARRAY();
+    temp VARCHAR(16);
+
+BEGIN
+len:=0;
+
+    ---------- Test avec une quantite negative ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,-1,10,458495522);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 0;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    ---------- Test avec une quantite positive ----------
+    BEGIN
+        len := len+1;
+        R :=0;
+        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,20,10,458495522);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+    
+    ---------- Test avec une quantite de 0 ----------
+    BEGIN
+        len := len+1;
+        R :=0;
+        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,0,10,458495522);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+    
+    ---------- Test avec un String ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,'Allo',10,458495522);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 0;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+    
+    ---------- Test avec une quantite vide ----------
+    BEGIN
+        len := len+1;
+        R :=0;
+        INSERT INTO Produit VALUES(953,'Cyber Converter',SYSDATE-5,'',10,458495522);
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+
+    FOR i IN 1..RArray.COUNT LOOP
+        IF RArray(i)= 0 THEN 
+            temp:='PASSED';
+        ELSE 
+            temp:='*****FAILED*****';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
+    END LOOP;
+END;
+
+BEGIN
+    Test_C3();
+END;
