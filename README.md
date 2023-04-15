@@ -35,7 +35,7 @@ passent ou non.
 Pour ce faire, l'utilisateur doit copier le contenu du fichier `Test_RUN.sql`
 et le coller dans `SQL Developper`. Une fois le contenu copié, il peut
 exécuter le programme. Il obtiendra un message de confirmation pour chaque
-procédure créer dans le `Script output` et il sera en mesure de voir si les
+procédure crée dans le `Script output` et il sera en mesure de voir si les
 tests passent ou échouent dans le `DBMS Output`.
 
 ## Conclusion
