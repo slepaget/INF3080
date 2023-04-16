@@ -51,7 +51,7 @@ Une fois exécuté le programme aura créé les différentes procédures de test
 La quatriéme étape est d'exécuter les procédures de tests créées au #3
 
 - Ouvrir la fenêtre `DBMS Output` se trouvant dans l'onglet `View` de `SQL Developper`
--- Nous recommendons de positionner la fenêtre pour avoir le plus de verticallitée possible
+  - Nous recommendons de positionner la fenêtre pour avoir le plus de verticallitée possible
 - Ouvrir une nouvelle connexion à la base de données `zeta2` à l'aide du bouton `+`
 - Copiez l'entièreté du contenu du fichier `4_Tests_Run.sql`
 - Coller dans l'espace de travail sur `SQL Developper` 
