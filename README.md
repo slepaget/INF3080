@@ -63,13 +63,13 @@ Une sous-section existe pour:
 
 Pour chaque section, une série de tests unitaires seront effectués et un message de confirmation sera écrit dans le `DBMS Output`.
 
-Si un test est exécuté avec succès (l'élément testé fonctionne correctement);
-le message suivant sera écrit:
-`Test #1   PASSED`
+Si un test est exécuté avec succès (l'élément testé fonctionne correctement);  
+le message suivant sera écrit:  
+`Test #1   PASSED`  
 
-Si le test est exécuté avec échec (l'élément testé échoue ou à un comportement anormal);
-le message suivant sera écrit:
-`Test #4   *****FAILED*****`
+Si le test est exécuté avec échec (l'élément testé échoue ou à un comportement anormal);  
+le message suivant sera écrit:  
+`Test #4   *****FAILED*****`  
 
 Notez que si une procédure/fonction testée ecrit, elle aussi, des données dans le `DBMS Output` ces information apparaitront avant le test qui les a causé.
 
