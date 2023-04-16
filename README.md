@@ -21,7 +21,7 @@ Veuillez suivre les procédures suivantes afin d'obtenir le résultat escompté.
 ## 1. Création des tables
 
 La première étape concerne la création des tables et triggers dans la base de donnée. 
-- Copiez l'entièreté contenu du fichier `1_creation.sql`
+- Copiez l'entièreté du contenu du fichier `1_creation.sql`
 - Coller dans l'espace de travail sur `SQL Developper`. 
 - Executez le script entier (F5)
 
@@ -30,7 +30,7 @@ Une fois exécuté le programme aura créé les différentes tables de la base d
 ## 2. Insertion des données
 
 La deuxième étape consiste à ajouter les enregistrements à l'aide d'insertion dans les tables de la base de données. 
-- Copiez l'entièreté contenu du fichier `2_Insertion.sql`
+- Copiez l'entièreté du contenu du fichier `2_Insertion.sql`
 - Coller dans l'espace de travail sur `SQL Developper` 
 - Executez le script entier (F5)
 
@@ -40,7 +40,7 @@ Une fois exécuté le programme aura créé les différents enregistrements dans
 
 La troisième étape est de créer les procédures de tests qui vérifient la stabilité et la justesse des contraintes, checks et triggers de la base de donnée.
 
-- Copiez l'entièreté contenu du fichier `3_Tests.sql`
+- Copiez l'entièreté du contenu du fichier `3_Tests.sql`
 - Coller dans l'espace de travail sur `SQL Developper` 
 - Executez le script entier (F5)
 
@@ -53,7 +53,7 @@ La quatriéme étape est d'exécuter les procédures de tests créées au #3
 - Ouvrir la fenêtre `DBMS Output` se trouvant dans l'onglet `View` de `SQL Developper`
 -- Nous recommendons de positionner la fenêtre pour avoir le plus de verticallitée possible
 - Ouvrir une nouvelle connexion à la base de données `zeta2` à l'aide du bouton `+`
-- Copiez l'entièreté contenu du fichier `4_Tests_Run.sql`
+- Copiez l'entièreté du contenu du fichier `4_Tests_Run.sql`
 - Coller dans l'espace de travail sur `SQL Developper` 
 - Executez le script entier (F5)
 
