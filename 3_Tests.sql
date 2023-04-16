@@ -1014,47 +1014,297 @@ len:=0;
 END;
 /
 
+create or replace PROCEDURE Test_Fonction_1
+
+IS
+    R NUMBER;
+    len NUMBER;
+    RArray ARRAY := ARRAY();
+    temp VARCHAR(16);
+    result NUMBER;
+
+BEGIN
+len:=0;
+result:=0;
+
+    ---------- Test des elements existants ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'ENCOURS',999);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,999,999,999);
+        INSERT INTO Ligne_Commande VALUES(999,999,999);
+        SELECT
+            QuantiteEnAttente(999,999)
+        INTO result
+        FROM
+            dual;
+        IF(result = 999)THEN
+            R := 0;
+        END IF;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    ---------- Test des elements non existants ----------
+    BEGIN
+        len := len+1;
+        R :=0;
+
+        SELECT
+            QuantiteEnAttente(0,999)
+        INTO result
+        FROM
+            dual;
+        IF(result >= 0)THEN
+            R := 1;
+        END IF;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+
+    FOR i IN 1..RArray.COUNT LOOP
+        IF RArray(i)= 0 THEN 
+            temp:='PASSED';
+        ELSE 
+            temp:='*****FAILED*****';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
+    END LOOP;
+END;
+/
+
+create or replace PROCEDURE Test_Procedure_1
+
+IS
+    R NUMBER;
+    len NUMBER;
+    RArray ARRAY := ARRAY();
+    temp VARCHAR(16);
+    result NUMBER;
+
+BEGIN
+len:=0;
+result:=0;
+
+    ---------- Test avec un client existant ----------
+    BEGIN
+        len := len+1;
+        R :=0;
+        
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'ENCOURS',999);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,999,999,999);
+        INSERT INTO Ligne_Commande VALUES(999,999,999);
+        INSERT INTO Livraison VALUES(999,SYSDATE);
+        INSERT INTO Ligne_Livraison VALUES(999,999,999,999);
+        BEGIN
+            PreparerLivraison(999);
+        END;
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    ---------- Test avec un client non existant ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        BEGIN
+            PreparerLivraison(999);
+        END;
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 0;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    ---------- Test avec un client string ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        BEGIN
+            PreparerLivraison('Allo');
+        END;
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 0;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    ---------- Test avec aucun argument ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        BEGIN
+            PreparerLivraison('');
+        END;
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 0;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+
+    FOR i IN 1..RArray.COUNT LOOP
+        IF RArray(i)= 0 THEN 
+            temp:='PASSED';
+        ELSE 
+            temp:='*****FAILED*****';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
+    END LOOP;
+END;
+/
+
+create or replace PROCEDURE Test_Procedure_2
+
+IS
+    R NUMBER;
+    len NUMBER;
+    RArray ARRAY := ARRAY();
+    temp VARCHAR(16);
+    result NUMBER;
+
+BEGIN
+len:=0;
+result:=0;
+
+    ---------- Test avec une livraison existante ----------
+    BEGIN
+        len := len+1;
+        R :=0;
+        INSERT INTO Client VALUES(999,'Test','Test', 'Test','Test','Test');
+        INSERT INTO Commande VALUES(999,SYSDATE,'ENCOURS',999);
+        INSERT INTO Produit VALUES(999,'Test',SYSDATE,999,999,999);
+        INSERT INTO Prix_Produit VALUES(999,SYSDATE,999);
+        INSERT INTO Ligne_Commande VALUES(999,999,999);
+        INSERT INTO Livraison VALUES(999,SYSDATE);
+        INSERT INTO Ligne_Livraison VALUES(999,999,999,999);
+        BEGIN
+            ProduireFacture(999);
+        END;
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 1;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    ---------- Test avec une livraison non existante ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        BEGIN
+            ProduireFacture(999);
+        END;
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 0;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    ---------- Test avec un string ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        BEGIN
+            ProduireFacture('Allo');
+        END;
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 0;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+    ---------- Test avec aucun argument ----------
+    BEGIN
+        len := len+1;
+        R :=1;
+        BEGIN
+            ProduireFacture('');
+        END;
+    EXCEPTION
+        WHEN OTHERS THEN
+            R := 0;
+    END;
+    RArray.EXTEND(1);
+    RArray(len):=R;
+    ROLLBACK;
+
+
+    FOR i IN 1..RArray.COUNT LOOP
+        IF RArray(i)= 0 THEN 
+            temp:='PASSED';
+        ELSE 
+            temp:='*****FAILED*****';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE('Test #' || i || '   ' || temp);
+    END LOOP;
+END;
+/
+
+create or replace PROCEDURE Tests_Complet
+IS
 BEGIN
     DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C1');
-    Test_C1();
+        Test_C1();
     DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C2');
-    Test_C2();
+        Test_C2();
     DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C3');
-    Test_C3();
+        Test_C3();
     DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C4');
-    Test_C4();
+        Test_C4();
     DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C5');
-    Test_C5();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_C5();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C6');
-    Test_C6();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_C6();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C7');
-    Test_C7();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_C7();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C8');
-    Test_C8();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_C8();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C9');
-    Test_C9();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_C9();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour C10');
-    Test_C10();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_C10();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour Trigger');
-    Test_Trigger();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_Trigger();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour Fonction_1');
-    Test_Fonction_1();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_Fonction_1();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour Procedure_1');
-    Test_Procedure_1();
-        DBMS_OUTPUT.PUT_LINE('------------------');
+        Test_Procedure_1();
+    DBMS_OUTPUT.PUT_LINE('------------------');
     DBMS_OUTPUT.PUT_LINE('Tests pour Procedure_2');
-    Test_Procedure_2();
+        Test_Procedure_2();
 END;

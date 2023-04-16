@@ -8,7 +8,7 @@ drop table 	LIVRAISON	cascade constraints;
 drop table 	LIGNE_LIVRAISON	cascade constraints;
 drop table 	PAIEMENT	cascade constraints;
 drop table 	APPROVISIONNEMENT cascade constraints;
-drop view V_commande_item;
+--drop view V_commande_item;
 
 CREATE TABLE Client (
     no_client INT,
@@ -111,4 +111,19 @@ CREATE TABLE Paiement(
     FOREIGN KEY (no_livraison) REFERENCES Livraison
 );
 
+CREATE OR REPLACE TRIGGER R31_IdPaiement
+BEFORE INSERT ON Paiement
+FOR EACH ROW
+DECLARE 
+  id INT;
+BEGIN
+    SELECT MAX(id_paiement) INTO id FROM Paiement;
+    IF id IS NULL THEN
+        id:=1000;
+    ELSE
+        id := id +1;
+    END IF;
+    :NEW.id_paiement := id;
+END;
+/
 create or replace TYPE array IS TABLE OF NUMBER
