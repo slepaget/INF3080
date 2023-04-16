@@ -6,10 +6,7 @@
 
 ## Introduction
 
-Ce manuel d'utilisation a pour but de guider l'utilisateur au cours des
-différentes étapes de création d'une base de données sur `SQL Developper`.
-Il aura l'opportunité de créer des tables, insérer des données et de faire
-des tests pour voir si les contraintes sont respectées.
+Ce manuel d'utilisation a pour but de guider l'utilisateur au cours des différentes étapes de création d'une base de données sur `SQL Developper`. Il aura l'opportunité de créer des tables, insérer des données et de faire des tests pour voir si les contraintes sont respectées.
 
 Il est assumer que:
 - Vous opérez depuis `SQL Developper v20.2.0.175` minimum
@@ -65,16 +62,17 @@ Une sous-section existe pour:
 - les fonctions inscrites au TP3 (Fonction_1..Fonction_2)
 
 Pour chaque section, une série de tests unitaires seront effectués et un message de confirmation sera écrit dans le `DBMS Output`.
-Si un test est exécuté avec succès (l'élément testé fonctionne correctement) le message suivant sera écrit:
+
+Si un test est exécuté avec succès (l'élément testé fonctionne correctement);
+le message suivant sera écrit:
 `Test #1   PASSED`
-Si le test est exécuté avec échec (l'élément testé échoue ou à un comportement anormal) le message suivant sera écrit:
+
+Si le test est exécuté avec échec (l'élément testé échoue ou à un comportement anormal);
+le message suivant sera écrit:
 `Test #4   *****FAILED*****`
 
-Notez que si une procédure/fonction testée ecrit, elle aussi, des données dans le `DBMS Output`
-ces information apparaitront avant le test qui les a causé.
+Notez que si une procédure/fonction testée ecrit, elle aussi, des données dans le `DBMS Output` ces information apparaitront avant le test qui les a causé.
 
 ## Conclusion
 
-En conclusion, la base de donnée contient maintenant des tables, des données
-et nous savons que les contraintes listées sont fonctionnelles. L'utilisateur est
-maintenant libre de manipuler la base de données à sa guise.
+En conclusion, la base de donnée contient maintenant des tables, des données et nous savons que les contraintes listées sont fonctionnelles. L'utilisateur est maintenant libre de manipuler la base de données à sa guise.
