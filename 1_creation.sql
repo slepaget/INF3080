@@ -8,6 +8,9 @@ drop table 	LIVRAISON	cascade constraints;
 drop table 	LIGNE_LIVRAISON	cascade constraints;
 drop table 	PAIEMENT	cascade constraints;
 drop table 	APPROVISIONNEMENT cascade constraints;
+drop function QuantiteEnAttente;
+drop procedure PreparerLivraison;
+drop procedure ProduireFacture; 
 --drop view V_commande_item;
 
 CREATE TABLE Client (

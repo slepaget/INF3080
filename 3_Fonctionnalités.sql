@@ -11,7 +11,7 @@ SELECT quantite_cmd INTO QuantiteEnAttente
     AND Commande.statut = 'ENCOURS';
     RETURN QuantiteEnAttente;
 END;
-
+/
 
 --REQUÈTE 2.2
 
@@ -71,7 +71,7 @@ BEGIN
         CLOSE c1;
         
 END;
-
+/
 
 --REQUÈTE 2.3
 
